@@ -68,6 +68,7 @@ class Workbook(xmlwriter.XMLwriter):
 
         super(Workbook, self).__init__()
 
+        self._verify_filename(filename)
         self.filename = filename
 
         self.tmpdir = options.get('tmpdir', None)
@@ -1654,6 +1655,11 @@ class Workbook(xmlwriter.XMLwriter):
         # Get and instance of the Packager class to create the xlsx package.
         # This allows the default packager to be over-ridden.
         return Packager()
+
+    def _verify_filename(self, filename):
+        # Check if given filename is a boolean. If it is, raise TypeError
+        if isinstance(filename, bool):
+            raise TypeError
 
     ###########################################################################
     #
