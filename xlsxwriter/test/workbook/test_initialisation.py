@@ -31,5 +31,11 @@ class TestInitialisation(unittest.TestCase):
 
         self.assertEqual(got, exp)
 
+    def test_verify_filename(self):
+        """Test verify_filename by passing it a boolean """
+
+        with self.assertRaises(TypeError):
+            workbook = Workbook(True)
+
     def tearDown(self):
         self.workbook.fileclosed = 1
